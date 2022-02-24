@@ -1,0 +1,41 @@
+name: exercise01
+
+on:
+  push:
+    - master
+
+jobs: #by default, workflows run in parallel, add a
+  #dependency to create a pipeline
+  job1:
+    name: First job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step one
+        uses: actions/checkout@v2
+      - name: Step two
+        run: echo $(date)
+  job2:
+    name: First job
+    runs-on: macos-latest
+    steps:
+      - name: Step one
+        uses: actions/checkout@v2
+      - name: Step two
+        run: echo $(date)
+  job3:
+    name: Second job
+    runs-on: windows-latest
+    steps:
+      - name: Step one
+        uses: actions/checkout@v2
+      - name: Step two
+        run: "Write-Output $(Get-Date)"
+  job4:
+    name: Second job
+    needs: [job1,job2,job3]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step one
+        uses: actions/checkout@v2
+      - name: Step two
+        run: echo $(date)
