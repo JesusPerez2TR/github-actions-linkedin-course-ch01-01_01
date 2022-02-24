@@ -1,6 +1,6 @@
 name: exercise01
 
-on: push
+on: [push]
 
 jobs: #by default, workflows run in parallel, add a
   #dependency to create a pipeline
@@ -13,7 +13,7 @@ jobs: #by default, workflows run in parallel, add a
       - name: Step two
         run: echo $(date)
   job2:
-    name: First job
+    name: Second job
     runs-on: macos-latest
     steps:
       - name: Step one
@@ -21,7 +21,7 @@ jobs: #by default, workflows run in parallel, add a
       - name: Step two
         run: echo $(date)
   job3:
-    name: Second job
+    name: Third job
     runs-on: windows-latest
     steps:
       - name: Step one
@@ -29,7 +29,7 @@ jobs: #by default, workflows run in parallel, add a
       - name: Step two
         run: "Write-Output $(Get-Date)"
   job4:
-    name: Second job
+    name: Fourth job
     needs: [job1,job2,job3]
     runs-on: ubuntu-latest
     steps:
