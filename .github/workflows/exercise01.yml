@@ -1,8 +1,6 @@
 name: exercise01
 
-on:
-  push:
-    - master
+on: push
 
 jobs: #by default, workflows run in parallel, add a
   #dependency to create a pipeline
